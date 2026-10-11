@@ -27,6 +27,8 @@ class ErrorInterceptor extends Interceptor {
         return const NetworkFailure('Certificado SSL inválido.');
       case DioExceptionType.badResponse:
         return _fromResponse(e.response);
+      case DioExceptionType.transformTimeout:
+        return const TimeoutFailure();
       case DioExceptionType.unknown:
         return e.error is Failure ? e.error! as Failure : const NetworkFailure();
     }

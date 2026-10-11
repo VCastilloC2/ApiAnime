@@ -64,7 +64,7 @@ class LatencyState {
 
 /// Sondea `/health` cada [Env.latencyPollInterval]. Al ser autoDispose, el timer
 /// se cancela solo cuando el usuario sale del Dashboard (cero tráfico en segundo plano).
-class LatencyMonitor extends AutoDisposeNotifier<LatencyState> {
+class LatencyMonitor extends Notifier<LatencyState> {
   static const _maxSamples = 30;
   Timer? _timer;
   bool _inFlight = false;
@@ -117,4 +117,4 @@ class LatencyMonitor extends AutoDisposeNotifier<LatencyState> {
 }
 
 final latencyMonitorProvider =
-    AutoDisposeNotifierProvider<LatencyMonitor, LatencyState>(LatencyMonitor.new);
+    NotifierProvider.autoDispose<LatencyMonitor, LatencyState>(LatencyMonitor.new);

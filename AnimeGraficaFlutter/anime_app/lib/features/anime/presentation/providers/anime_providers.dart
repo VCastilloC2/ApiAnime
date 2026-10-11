@@ -77,7 +77,7 @@ class AnimeListNotifier extends AsyncNotifier<AnimeListState> {
 
   /// Pide la siguiente página; un fallo NO destruye la lista ya cargada.
   Future<void> loadMore() async {
-    final current = state.valueOrNull;
+    final current = state.value;
     if (state.isLoading || current == null || current.loadingMore || !current.hasMore) return;
 
     state = AsyncData(current.copyWith(loadingMore: true, hasLoadMoreError: false));

@@ -75,7 +75,7 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
                       children: [
                         Text('Explorar', style: text.headlineMedium?.copyWith(fontWeight: FontWeight.w800)),
                         Text(
-                          '${list.valueOrNull?.total ?? 0} animes en el catálogo',
+                          '${list.value?.total ?? 0} animes en el catálogo',
                           style: text.bodyMedium?.copyWith(color: Theme.of(context).colorScheme.outline),
                         ),
                         const SizedBox(height: 16),
