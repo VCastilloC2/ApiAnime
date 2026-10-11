@@ -1,29 +1,20 @@
-import os
-from urllib.parse import quote_plus
-
-from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 
-load_dotenv()
+from core.config import settings
 
-DB_USER = os.getenv("DB_USER")
-DB_PASSWORD = quote_plus(os.getenv("DB_PASSWORD"))
-DB_HOST = os.getenv("DB_HOST")
-DB_PORT = os.getenv("DB_PORT", "3306")
-DB_NAME = os.getenv("DB_NAME")
-
-DATABASE_URL = (
-    f"mysql+mysqlconnector://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+engine = create_engine(
+    settings.database_url,
+    pool_pre_ping=True,   # detecta conexiones muertas antes de usarlas
+    pool_recycle=1800,    # recicla conexiones cada 30 min (MySQL las cierra por inactividad)
+    echo=settings.sql_echo,
 )
-
-engine = create_engine(DATABASE_URL, pool_pre_ping=True)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
 
 def get_db():
-    """Dependencia de FastAPI: abre una sesión por petición y la cierra al terminar."""
+    """Dependencia de FastAPI: una sesión por petición, siempre se cierra."""
     db = SessionLocal()
     try:
         yield db
