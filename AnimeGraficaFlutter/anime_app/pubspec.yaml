@@ -1,23 +1,24 @@
-name: anime_app
-description: App Flutter que consume la API REST de animes (FastAPI + MySQL).
+name: anime_pulse
+description: Dashboard y catálogo de anime (Flutter Web + Móvil) que consume la API FastAPI.
 publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.0.0 <4.0.0'
+  sdk: '>=3.6.0 <4.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
-  flutter_bloc: ^8.1.6
+  flutter_riverpod: ^2.6.1      # estado + inyección de dependencias
+  dio: ^5.7.0                   # cliente HTTP con interceptores
+  fl_chart: ^0.69.2             # gráficos (pin <0.70: la API de títulos cambió después)
+  flutter_secure_storage: ^9.2.2 # tokens (Keychain/Keystore; WebCrypto en web)
   equatable: ^2.0.5
-  http: ^1.2.1
-  fl_chart: ^0.68.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^3.0.0
+  flutter_lints: ^5.0.0
 
 flutter:
   uses-material-design: true
