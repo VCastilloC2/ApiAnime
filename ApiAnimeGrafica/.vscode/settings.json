@@ -1,0 +1,10 @@
+{
+    "python-envs.defaultEnvManager": "ms-python.python:system",
+    "python.analysis.extraPaths": [
+        "./core",
+        "./repositories",
+        "./routers",
+        "./schemas",
+        "./models"
+    ]
+}

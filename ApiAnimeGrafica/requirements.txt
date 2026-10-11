@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+sqlalchemy
+mysql-connector-python
+pydantic
+python-dotenv
+certifi
+charset-normalizer
+idna
+requests
+urllib3
