@@ -25,6 +25,22 @@ class AnimeRemoteDataSource {
   Future<ApiResponse<List<GenreModel>>> fetchGenres() =>
       _api.get('/genres', parser: GenreModel.listFromJson);
 
+  Future<ApiResponse<AnimeModel>> createAnime(AnimeInput input) =>
+      _api.post('/animes', body: input.toJson(), parser: (j) => AnimeModel.fromJson(j as Map<String, dynamic>));
+
+  Future<ApiResponse<AnimeModel>> updateAnime(int id, AnimeInput input) =>
+      _api.put('/animes/$id', body: input.toJson(), parser: (j) => AnimeModel.fromJson(j as Map<String, dynamic>));
+
+  Future<void> deleteAnime(int id) => _api.delete('/animes/$id');
+
+  Future<ApiResponse<GenreModel>> createGenre(String name) =>
+      _api.post('/genres', body: {'name': name.trim()}, parser: (j) => GenreModel.fromJson(j as Map<String, dynamic>));
+
+  Future<ApiResponse<GenreModel>> renameGenre(int id, String name) =>
+      _api.put('/genres/$id', body: {'name': name.trim()}, parser: (j) => GenreModel.fromJson(j as Map<String, dynamic>));
+
+  Future<void> deleteGenre(int id) => _api.delete('/genres/$id');
+
   Future<ApiResponse<List<AnimeModel>>> fetchTopRated(int limit) =>
       _api.get('/stats/top-rated', query: {'limit': limit}, parser: AnimeModel.listFromJson);
 }

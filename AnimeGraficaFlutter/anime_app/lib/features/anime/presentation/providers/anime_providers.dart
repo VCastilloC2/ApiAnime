@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/di/providers.dart';
+import '../../../dashboard/presentation/providers/dashboard_providers.dart';
 import '../../data/datasources/anime_remote_datasource.dart';
 import '../../data/repositories/anime_repository_impl.dart';
 import '../../domain/entities/anime.dart';
@@ -15,6 +16,13 @@ final animeRepositoryProvider = Provider<AnimeRepository>(
 final getAnimesProvider = Provider((ref) => GetAnimes(ref.watch(animeRepositoryProvider)));
 final getGenresProvider = Provider((ref) => GetGenres(ref.watch(animeRepositoryProvider)));
 final getTopRatedProvider = Provider((ref) => GetTopRated(ref.watch(animeRepositoryProvider)));
+
+final createAnimeProvider = Provider((ref) => CreateAnime(ref.watch(animeRepositoryProvider)));
+final updateAnimeProvider = Provider((ref) => UpdateAnime(ref.watch(animeRepositoryProvider)));
+final deleteAnimeProvider = Provider((ref) => DeleteAnime(ref.watch(animeRepositoryProvider)));
+final createGenreProvider = Provider((ref) => CreateGenre(ref.watch(animeRepositoryProvider)));
+final renameGenreProvider = Provider((ref) => RenameGenre(ref.watch(animeRepositoryProvider)));
+final deleteGenreProvider = Provider((ref) => DeleteGenre(ref.watch(animeRepositoryProvider)));
 
 // ───────────── Estado ─────────────
 final genresProvider = FutureProvider<List<Genre>>((ref) => ref.watch(getGenresProvider)());
@@ -100,3 +108,61 @@ class AnimeListNotifier extends AsyncNotifier<AnimeListState> {
 
 final animeListProvider =
     AsyncNotifierProvider<AnimeListNotifier, AnimeListState>(AnimeListNotifier.new);
+
+/// Acciones de escritura. Tras cada cambio se invalidan las listas, el ranking y
+/// el dashboard para que toda la app muestre datos frescos.
+final animeActionsProvider = Provider<AnimeActions>((ref) => AnimeActions(ref));
+
+class AnimeActions {
+  AnimeActions(this._ref);
+  final Ref _ref;
+
+  void _refreshAll({bool genres = false}) {
+    _ref.invalidate(animeListProvider);
+    _ref.invalidate(topRatedProvider);
+    if (genres) _ref.invalidate(genresProvider);
+    _ref.invalidate(statsSummaryProvider);
+    _ref.invalidate(genreStatsProvider);
+    _ref.invalidate(ratingDistributionProvider);
+    _ref.invalidate(catalogPointsProvider);
+  }
+
+  Future<Anime> create(AnimeInput input) async {
+    final a = await _ref.read(createAnimeProvider)(input);
+    _refreshAll();
+    return a;
+  }
+
+  Future<Anime> update(int id, AnimeInput input) async {
+    final a = await _ref.read(updateAnimeProvider)(id, input);
+    _refreshAll();
+    return a;
+  }
+
+  Future<void> delete(int id) async {
+    await _ref.read(deleteAnimeProvider)(id);
+    _refreshAll();
+  }
+
+  Future<Genre> createGenre(String name) async {
+    final g = await _ref.read(createGenreProvider)(name);
+    _refreshAll(genres: true);
+    return g;
+  }
+
+  Future<Genre> renameGenre(int id, String name) async {
+    final g = await _ref.read(renameGenreProvider)(id, name);
+    _refreshAll(genres: true);
+    return g;
+  }
+
+  Future<void> deleteGenre(int id) async {
+    await _ref.read(deleteGenreProvider)(id);
+    // Si el género borrado era el filtro activo, volvemos a "Todos".
+    final q = _ref.read(animeQueryProvider);
+    if (q.genreId == id) {
+      _ref.read(animeQueryProvider.notifier).update((c) => c.copyWith(clearGenre: true));
+    }
+    _refreshAll(genres: true);
+  }
+}

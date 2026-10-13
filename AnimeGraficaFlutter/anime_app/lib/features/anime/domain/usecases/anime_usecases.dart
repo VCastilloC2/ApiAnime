@@ -21,3 +21,39 @@ class GetTopRated {
   final AnimeRepository _repo;
   Future<List<Anime>> call({int limit = 10}) => _repo.getTopRated(limit: limit);
 }
+
+class CreateAnime {
+  const CreateAnime(this._repo);
+  final AnimeRepository _repo;
+  Future<Anime> call(AnimeInput input) => _repo.createAnime(input);
+}
+
+class UpdateAnime {
+  const UpdateAnime(this._repo);
+  final AnimeRepository _repo;
+  Future<Anime> call(int id, AnimeInput input) => _repo.updateAnime(id, input);
+}
+
+class DeleteAnime {
+  const DeleteAnime(this._repo);
+  final AnimeRepository _repo;
+  Future<void> call(int id) => _repo.deleteAnime(id);
+}
+
+class CreateGenre {
+  const CreateGenre(this._repo);
+  final AnimeRepository _repo;
+  Future<Genre> call(String name) => _repo.createGenre(name);
+}
+
+class RenameGenre {
+  const RenameGenre(this._repo);
+  final AnimeRepository _repo;
+  Future<Genre> call(int id, String name) => _repo.renameGenre(id, name);
+}
+
+class DeleteGenre {
+  const DeleteGenre(this._repo);
+  final AnimeRepository _repo;
+  Future<void> call(int id) => _repo.deleteGenre(id);
+}

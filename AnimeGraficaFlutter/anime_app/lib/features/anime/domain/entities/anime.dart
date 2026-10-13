@@ -65,3 +65,25 @@ class PagedResult<T> {
   final int total;
   const PagedResult({required this.items, required this.total});
 }
+
+
+/// Datos que el usuario envía para crear/editar un anime (cuerpo de POST/PUT /animes).
+class AnimeInput extends Equatable {
+  final String title;
+  final int episodes;
+  final double rating;
+  final int? genreId; // null = sin género
+
+  const AnimeInput({required this.title, required this.episodes, required this.rating, this.genreId});
+
+  /// PUT es parcial en la API; enviamos todos los campos y `genre_id: null` quita el género.
+  Map<String, dynamic> toJson() => {
+        'title': title.trim(),
+        'episodes': episodes,
+        'rating': double.parse(rating.toStringAsFixed(1)),
+        'genre_id': genreId,
+      };
+
+  @override
+  List<Object?> get props => [title, episodes, rating, genreId];
+}

@@ -8,6 +8,8 @@ import '../../../../shared/widgets/async_value_view.dart';
 import '../providers/anime_providers.dart';
 import '../widgets/anime_card.dart';
 import '../widgets/anime_detail_sheet.dart';
+import '../widgets/anime_form_sheet.dart';
+import '../widgets/genre_manager_sheet.dart';
 import '../widgets/genre_tabs.dart';
 
 /// Catálogo con búsqueda (debounce), pestañas por género y scroll infinito.
@@ -73,7 +75,31 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Explorar', style: text.headlineMedium?.copyWith(fontWeight: FontWeight.w800)),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Text('Explorar',
+                                  style: text.headlineMedium?.copyWith(fontWeight: FontWeight.w800)),
+                            ),
+                            IconButton(
+                              tooltip: 'Gestionar géneros',
+                              onPressed: () => showGenreManager(context),
+                              icon: const Icon(Icons.category_rounded),
+                            ),
+                            const SizedBox(width: 4),
+                            FilledButton.icon(
+                              onPressed: () async {
+                                final messenger = ScaffoldMessenger.of(context);
+                                final created = await showAnimeForm(context);
+                                if (created != null) {
+                                  messenger.showSnackBar(SnackBar(content: Text('"${created.title}" creado')));
+                                }
+                              },
+                              icon: const Icon(Icons.add_rounded),
+                              label: const Text('Nuevo'),
+                            ),
+                          ],
+                        ),
                         Text(
                           '${list.value?.total ?? 0} animes en el catálogo',
                           style: text.bodyMedium?.copyWith(color: Theme.of(context).colorScheme.outline),
@@ -117,6 +143,7 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
   List<Widget> _body(AsyncValue<AnimeListState> list, ScreenSize size, double pad) {
     return list.when(
       skipLoadingOnRefresh: true,
+      skipLoadingOnReload: true,
       loading: () => [const SliverFillRemaining(hasScrollBody: false, child: Center(child: CircularProgressIndicator.adaptive()))],
       error: (e, _) => [
         SliverFillRemaining(
