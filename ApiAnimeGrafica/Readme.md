@@ -1,9 +1,6 @@
 # Anime REST API (FastAPI + MySQL)
 
 ## 1. Configuración
-1. Copia `.env.example` como `.env` y escribe tus datos reales de MySQL.
-2. Crea las tablas `genres` y `animes` en `db_anime` (tu script SQL).
-3. Instala dependencias: `pip install -r requirements.txt`
 
 deactivate
 Remove-Item -Recurse -Force venv
