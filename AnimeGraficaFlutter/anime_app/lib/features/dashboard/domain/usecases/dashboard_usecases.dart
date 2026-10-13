@@ -60,22 +60,29 @@ class ComputeLinearRegression {
 }
 
 /// Agrupa las altas (`created_at`) por mes y calcula el acumulado.
+/// Si todas las altas caen en un único mes, agrupa por día para que la tendencia
+/// siga siendo visible (en ese caso `TrendPoint.month` trae el día exacto).
 class BuildRegistrationTrend {
   const BuildRegistrationTrend();
 
   List<TrendPoint> call(List<CatalogPoint> points) {
-    final perMonth = <DateTime, int>{};
+    final monthly = _group(points, (d) => DateTime(d.year, d.month));
+    if (monthly.length >= 2) return monthly;
+    return _group(points, (d) => DateTime(d.year, d.month, d.day));
+  }
+
+  List<TrendPoint> _group(List<CatalogPoint> points, DateTime Function(DateTime) keyOf) {
+    final perKey = <DateTime, int>{};
     for (final p in points) {
       final d = p.createdAt;
       if (d == null) continue;
-      final key = DateTime(d.year, d.month);
-      perMonth[key] = (perMonth[key] ?? 0) + 1;
+      final key = keyOf(d);
+      perKey[key] = (perKey[key] ?? 0) + 1;
     }
-    final months = perMonth.keys.toList()..sort();
+    final keys = perKey.keys.toList()..sort();
     var acc = 0;
     return [
-      for (final m in months)
-        TrendPoint(month: m, added: perMonth[m]!, cumulative: acc += perMonth[m]!),
+      for (final k in keys) TrendPoint(month: k, added: perKey[k]!, cumulative: acc += perKey[k]!),
     ];
   }
 }

@@ -18,11 +18,14 @@ class RegistrationTrendChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final maxY = trend.isEmpty ? 1 : trend.last.cumulative;
+    // Con altas en un solo mes, el caso de uso agrupa por día.
+    final daily = trend.length >= 2 && trend.first.month.year == trend.last.month.year &&
+        trend.first.month.month == trend.last.month.month;
     return ChartCard(
       title: 'Tendencia de altas',
-      subtitle: 'Animes acumulados por mes de registro',
+      subtitle: daily ? 'Animes acumulados por día de registro' : 'Animes acumulados por mes de registro',
       child: trend.length < 2
-          ? const ChartEmpty('Se necesitan altas en al menos 2 meses distintos\npara dibujar una tendencia.')
+          ? const ChartEmpty('Se necesitan altas en al menos 2 días distintos\npara dibujar una tendencia.\n(Registra animes en fechas diferentes.)')
           : LineChart(
               LineChartData(
                 minY: 0,
@@ -55,7 +58,10 @@ class RegistrationTrendChart extends StatelessWidget {
                         final m = trend[v.toInt()].month;
                         return Padding(
                           padding: const EdgeInsets.only(top: 8),
-                          child: Text("${_months[m.month - 1]} '${(m.year % 100).toString().padLeft(2, '0')}",
+                          child: Text(
+                              daily
+                                  ? '${m.day} ${_months[m.month - 1]}'
+                                  : "${_months[m.month - 1]} '${(m.year % 100).toString().padLeft(2, '0')}",
                               style: axisStyle(context)),
                         );
                       },
@@ -67,7 +73,7 @@ class RegistrationTrendChart extends StatelessWidget {
                     getTooltipItems: (spots) => [
                       for (final s in spots)
                         LineTooltipItem(
-                          '${trend[s.x.toInt()].cumulative} acumulados\n+${trend[s.x.toInt()].added} ese mes',
+                          '${trend[s.x.toInt()].cumulative} acumulados\n+${trend[s.x.toInt()].added} ${daily ? 'ese día' : 'ese mes'}',
                           const TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w700),
                         ),
                     ],

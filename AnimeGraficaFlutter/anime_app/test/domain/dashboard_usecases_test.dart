@@ -38,5 +38,16 @@ void main() {
       expect(trend.map((t) => t.added), [1, 2]);
       expect(trend.map((t) => t.cumulative), [1, 3]);
     });
+
+    test('si todas las altas son del mismo mes, agrupa por día', () {
+      const build = BuildRegistrationTrend();
+      final trend = build([
+        CatalogPoint(episodes: 1, rating: 1, createdAt: DateTime(2026, 10, 3)),
+        CatalogPoint(episodes: 1, rating: 1, createdAt: DateTime(2026, 10, 3, 18)),
+        CatalogPoint(episodes: 1, rating: 1, createdAt: DateTime(2026, 10, 12)),
+      ]);
+      expect(trend.map((t) => t.month), [DateTime(2026, 10, 3), DateTime(2026, 10, 12)]);
+      expect(trend.map((t) => t.cumulative), [2, 3]);
+    });
   });
 }
