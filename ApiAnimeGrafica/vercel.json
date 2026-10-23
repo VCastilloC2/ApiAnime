@@ -3,7 +3,7 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "ApiAnimeGrafica/main.py"
+      "dest": "main.py"
     }
   ]
 }
