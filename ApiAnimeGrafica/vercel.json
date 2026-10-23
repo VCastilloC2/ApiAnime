@@ -1,9 +1,17 @@
 {
   "version": 2,
+  "buildCommand": "",
+  "outputDirectory": "",
+  "framework": null,
+  "functions": {
+    "ApiAnimeGrafica/main.py": {
+      "runtime": "python@3.11"
+    }
+  },
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "main.py"
+      "dest": "ApiAnimeGrafica/main.py"
     }
   ]
 }
