@@ -1,0 +1,16 @@
+name: widget_preview_scaffold
+description: Scaffolding for Flutter Widget Previews
+publish_to: none
+version: 0.0.1
+environment:
+  sdk: ^3.13.5
+dependencies:
+  anime_pulse:
+    path: C:\Users\casti\Documents\Proyect\ApiAnime\AnimeGraficaFlutter\anime_app
+  flutter:
+    sdk: flutter
+flutter:
+  uses-material-design: true
+dependency_overrides:
+  anime_pulse:
+    path: C:\Users\casti\Documents\Proyect\ApiAnime\AnimeGraficaFlutter\anime_app
