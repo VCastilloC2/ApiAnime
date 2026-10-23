@@ -1,0 +1,12 @@
+{
+	"InstallScripts" : 
+	[
+		"C:/Users/casti/Documents/Proyect/ApiAnime/AnimeGraficaFlutter/anime_app/build/windows/x64/cmake_install.cmake",
+		"C:/Users/casti/Documents/Proyect/ApiAnime/AnimeGraficaFlutter/anime_app/build/windows/x64/flutter/cmake_install.cmake",
+		"C:/Users/casti/Documents/Proyect/ApiAnime/AnimeGraficaFlutter/anime_app/build/windows/x64/runner/cmake_install.cmake",
+		"C:/Users/casti/Documents/Proyect/ApiAnime/AnimeGraficaFlutter/anime_app/build/windows/x64/plugins/flutter_secure_storage_windows/cmake_install.cmake",
+		"C:/Users/casti/Documents/Proyect/ApiAnime/AnimeGraficaFlutter/anime_app/build/windows/x64/plugins/jni/cmake_install.cmake",
+		"C:/Users/casti/Documents/Proyect/ApiAnime/AnimeGraficaFlutter/anime_app/build/windows/x64/plugins/jni/shared/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

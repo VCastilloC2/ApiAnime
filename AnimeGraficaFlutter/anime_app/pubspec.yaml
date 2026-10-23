@@ -13,7 +13,7 @@ dependencies:
   dio: ^5.7.0                   # cliente HTTP con interceptores
   fl_chart: ^1.2.0             # gráficos (pin <0.70: la API de títulos cambió después)
   flutter_secure_storage: ^11.2.0 # tokens (Keychain/Keystore; WebCrypto en web)
-  equatable: ^2.0.5
+  equatable: ^3.0.0
 
 dev_dependencies:
   flutter_test:

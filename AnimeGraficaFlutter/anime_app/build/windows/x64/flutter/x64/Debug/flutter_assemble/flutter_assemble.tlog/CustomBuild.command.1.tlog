@@ -1,0 +1,28 @@
+^C:\USERS\CASTI\DOCUMENTS\PROYECT\APIANIME\ANIMEGRAFICAFLUTTER\ANIME_APP\BUILD\WINDOWS\X64\CMAKEFILES\84F864FC5AB88B408554A59F3475C887\FLUTTER_WINDOWS.DLL.RULE
+setlocal
+"C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E env FLUTTER_ROOT=C:\Users\casti\develop\flutter PROJECT_DIR=C:\Users\casti\Documents\Proyect\ApiAnime\AnimeGraficaFlutter\anime_app FLUTTER_ROOT=C:\Users\casti\develop\flutter FLUTTER_EPHEMERAL_DIR=C:\Users\casti\Documents\Proyect\ApiAnime\AnimeGraficaFlutter\anime_app\windows\flutter\ephemeral PROJECT_DIR=C:\Users\casti\Documents\Proyect\ApiAnime\AnimeGraficaFlutter\anime_app FLUTTER_TARGET=C:\Users\casti\Documents\Proyect\ApiAnime\AnimeGraficaFlutter\anime_app\lib\main.dart DART_DEFINES=RkxVVFRFUl9CVUlMRF9OQU1FPTEuMC4w,RkxVVFRFUl9CVUlMRF9OVU1CRVI9MQ==,RkxVVFRFUl9WRVJTSU9OPTMuNDcuNw==,RkxVVFRFUl9DSEFOTkVMPXN0YWJsZQ==,RkxVVFRFUl9HSVRfVVJMPWh0dHBzOi8vZ2l0aHViLmNvbS9mbHV0dGVyL2ZsdXR0ZXIuZ2l0,RkxVVFRFUl9GUkFNRVdPUktfUkVWSVNJT049YWJhZjljNTIzNw==,RkxVVFRFUl9FTkdJTkVfUkVWSVNJT049ZGViMjg3NDgxZQ==,RkxVVFRFUl9EQVJUX1ZFUlNJT049My4xMy41 DART_OBFUSCATION=false TRACK_WIDGET_CREATION=true TREE_SHAKE_ICONS=false PACKAGE_CONFIG=C:\Users\casti\Documents\Proyect\ApiAnime\AnimeGraficaFlutter\anime_app\.dart_tool\package_config.json C:/Users/casti/develop/flutter/packages/flutter_tools/bin/tool_backend.bat windows-x64 Debug
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\CASTI\DOCUMENTS\PROYECT\APIANIME\ANIMEGRAFICAFLUTTER\ANIME_APP\BUILD\WINDOWS\X64\CMAKEFILES\592248F9F776F277D29D900CB96DE396\FLUTTER_ASSEMBLE.RULE
+setlocal
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\CASTI\DOCUMENTS\PROYECT\APIANIME\ANIMEGRAFICAFLUTTER\ANIME_APP\WINDOWS\FLUTTER\CMAKELISTS.TXT
+setlocal
+"C:\Program Files (x86)\Microsoft Visual Studio\18\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/casti/Documents/Proyect/ApiAnime/AnimeGraficaFlutter/anime_app/windows -BC:/Users/casti/Documents/Proyect/ApiAnime/AnimeGraficaFlutter/anime_app/build/windows/x64 --check-stamp-file C:/Users/casti/Documents/Proyect/ApiAnime/AnimeGraficaFlutter/anime_app/build/windows/x64/flutter/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

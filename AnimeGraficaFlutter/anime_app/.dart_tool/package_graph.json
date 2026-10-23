@@ -46,7 +46,7 @@
     },
     {
       "name": "equatable",
-      "version": "2.1.0",
+      "version": "3.0.0",
       "dependencies": [
         "collection",
         "meta"
@@ -67,7 +67,7 @@
     },
     {
       "name": "fl_chart",
-      "version": "1.2.0",
+      "version": "1.3.0",
       "dependencies": [
         "equatable",
         "flutter",
@@ -405,7 +405,7 @@
     },
     {
       "name": "web",
-      "version": "1.1.1",
+      "version": "1.1.2",
       "dependencies": []
     },
     {
@@ -446,7 +446,7 @@
     },
     {
       "name": "vm_service",
-      "version": "15.3.0",
+      "version": "15.4.0",
       "dependencies": []
     },
     {

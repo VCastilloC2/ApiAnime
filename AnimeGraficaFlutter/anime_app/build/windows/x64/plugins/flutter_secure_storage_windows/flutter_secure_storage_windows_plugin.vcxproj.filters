@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\casti\Documents\Proyect\ApiAnime\AnimeGraficaFlutter\anime_app\windows\flutter\ephemeral\.plugin_symlinks\flutter_secure_storage_windows\windows\flutter_secure_storage_windows_plugin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\casti\Documents\Proyect\ApiAnime\AnimeGraficaFlutter\anime_app\windows\flutter\ephemeral\.plugin_symlinks\flutter_secure_storage_windows\windows\flutter_secure_storage_windows_plugin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\casti\Documents\Proyect\ApiAnime\AnimeGraficaFlutter\anime_app\windows\flutter\ephemeral\.plugin_symlinks\flutter_secure_storage_windows\windows\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{986FE38F-386A-3991-91C2-C12ADAF89381}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{825FD05A-AE71-3478-B36F-960F25D9D2D0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
