@@ -4,14 +4,14 @@
   "outputDirectory": "",
   "framework": null,
   "functions": {
-    "ApiAnimeGrafica/main.py": {
+    "main.py": {
       "maxDuration": 10
     }
   },
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "ApiAnimeGrafica/main.py"
+      "dest": "main.py"
     }
   ]
 }

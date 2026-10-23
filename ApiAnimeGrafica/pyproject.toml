@@ -1,2 +1,2 @@
 [tool.vercel]
-entrypoint = "ApiAnimeGrafica.main:app"
+entrypoint = "main:app"
