@@ -1,6 +1,11 @@
-fastapi==0.143.0
-uvicorn==0.54.0
-sqlalchemy==2.1.4
-mysql-connector-python==26.7.0
-pydantic==2.14.0
-python-dotenv==1.2.4
+fastapi
+uvicorn
+sqlalchemy
+mysql-connector-python
+pydantic
+python-dotenv
+sqlalchemy
+pymysql
+fastapi
+uvicorn
+python-dotenv

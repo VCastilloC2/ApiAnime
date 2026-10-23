@@ -1,10 +1,2 @@
-venv/
-.venv/
-__pycache__/
-*.pyc
-.vscode/
-tests/
-pytest.ini
-requirements-dev.txt
 check_db.py
 .env
